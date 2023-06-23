@@ -1,6 +1,8 @@
 <?php
 
-class User
+include 'models/Crud.php';
+
+class User extends Crud
 {
     public mixed $users;
 
@@ -13,6 +15,24 @@ class User
                 'email' => 'huda.prasetyo@widyatama.ac.id',
                 'password' => '123321',
                 'role' => 'Admin',
+                'created_at' => '2023-07-04',
+                'updated_at' => '2023-07-04'
+            ],
+            [
+                'id' => 2,
+                'name' => 'Muhammad Ridwan Rachmat',
+                'email' => 'muhammad.ridwan@telkom.co.id',
+                'password' => '123321',
+                'role' => 'User',
+                'created_at' => '2023-07-04',
+                'updated_at' => '2023-07-04'
+            ],
+            [
+                'id' => 3,
+                'name' => 'Sulthan Ashil Zafar Olii',
+                'email' => 'sulthan@telkom.co.id',
+                'password' => '123321',
+                'role' => 'User',
                 'created_at' => '2023-07-04',
                 'updated_at' => '2023-07-04'
             ]
@@ -44,7 +64,7 @@ class User
         return $userDetail;
     }
 
-    public function update(int $id, string $name)
+    public function update(int $id, mixed $name)
     {
         $userDetail = null;
 
@@ -67,32 +87,3 @@ class User
         return $this->users;
     }
 }
-
-// All Users
-$user = new User;
-echo "all users: <br /> " . json_encode($user->index());
-echo "<br /> <hr />";
-
-// Create user
-$user->store([
-    'id' => 2,
-    'name' => 'Huda Prasetyo 2',
-    'email' => 'huda.prasetyo2@widyatama.ac.id',
-    'password' => '123321',
-    'role' => 'User',
-    'created_at' => '2023-07-04',
-    'updated_at' => '2023-07-04'
-]);
-echo "all users with new users: <br />" . json_encode($user->index());
-echo "<br /> <hr />";
-
-// Get single user
-echo "single user: <br />" . json_encode($user->show(1));
-echo "<br /> <hr />";
-
-// Update user
-echo "update user: <br />" . json_encode($user->update(1, "Updated"));
-echo "<br /> <hr />";
-
-// Destroy user
-echo "delete users: <br />" . json_encode($user->destroy(2));

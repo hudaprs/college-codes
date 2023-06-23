@@ -2,7 +2,6 @@
 include 'layouts/header.php';
 include 'models/Product.php';
 
-
 $product = new Product();
 $productDetail = $product->show($_GET['id'])
     ?>
@@ -38,9 +37,12 @@ $productDetail = $product->show($_GET['id'])
 
             <br />
 
-            <a class="btn btn-success" href="transaction.php?product_id=<?= $productDetail['id'] ?>">
-                Beli
-            </a>
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'User'): ?>
+                <a class="btn btn-success" href="transaction.php?product_id=<?= $productDetail['id'] ?>">
+                    Beli
+                </a>
+            <?php endif; ?>
+
             <a class="btn btn-primary" href="index.php">
                 Kembali Ke Produk List
             </a>
